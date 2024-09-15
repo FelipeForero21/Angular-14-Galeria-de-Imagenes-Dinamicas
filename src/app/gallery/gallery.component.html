@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galería de Imágenes</title>
+  </head>
+  <body>
+    <h1>
+      GALERÍA DE IMÁGENES - ENTREGABLE 1 - Angular 14 - Luis Felipe Forero Paez
+    </h1>
+
+    <div class="button-container">
+      <button class="action-button" (click)="showModal('addImage')">
+        Subir Nueva Imagen
+      </button>
+      <button class="action-button" (click)="showModal('favorites')">
+        Ver Favoritos
+      </button>
+    </div>
+
+    <div
+      *ngIf="modal === 'addImage'"
+      class="modal-overlay"
+      (click)="closeModal()"
+    >
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2>Subir Nueva Imagen</h2>
+        <form
+          (ngSubmit)="
+            addNewImage(
+              $event,
+              titleInput.value,
+              descriptionInput.value,
+              categoryInput.value,
+              urlInput.value
+            )
+          "
+        >
+          <input #titleInput type="text" placeholder="Título" required />
+          <input
+            #descriptionInput
+            type="text"
+            placeholder="Descripción"
+            required
+          />
+          <select #categoryInput required>
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+          <input #urlInput type="url" placeholder="URL de la imagen" required />
+          <button type="submit">Subir Imagen</button>
+          <button type="button" (click)="closeModal()">Cerrar</button>
+        </form>
+      </div>
+    </div>
+
+    <div
+      *ngIf="modal === 'imageDetails'"
+      class="modal-overlay"
+      (click)="closeModal()"
+    >
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2>{{ selectedImage?.title }}</h2>
+        <p>{{ selectedImage?.description }}</p>
+        <p>Date: {{ selectedImage?.date }}</p>
+        <button (click)="closeModal()">Cerrar</button>
+      </div>
+    </div>
+
+    <div
+      *ngIf="modal === 'favorites'"
+      class="modal-overlay"
+      (click)="closeModal()"
+    >
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2>Imágenes Favoritas</h2>
+        <div *ngIf="favoriteImages.length === 0">
+          No tienes imágenes favoritas aún.
+        </div>
+        <div class="image-grid">
+          <div *ngFor="let fav of favoriteImages" class="image-card">
+            <img [src]="fav.url" [alt]="fav.title" />
+            <h3>{{ fav.title }}</h3>
+          </div>
+        </div>
+        <button (click)="closeModal()">Cerrar</button>
+      </div>
+    </div>
+
+    <h2>Seleccionar categoría</h2>
+    <select (change)="selectCategory($event)">
+      <option value="All">All</option>
+      <option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </option>
+    </select>
+    <h3>Da clic en cualquier imagen para más detalles</h3>
+
+    <p *ngIf="filteredImages().length === 0">No hay imágenes disponibles.</p>
+
+    <div class="image-grid">
+      <div
+        *ngFor="let image of filteredImages()"
+        class="image-card"
+        (click)="openImageModal(image)"
+      >
+        <img [src]="image.url" [alt]="image.title" />
+        <h3>{{ image.title }}</h3>
+        <p>{{ image.description }}</p>
+        <button (click)="toggleFavorite(image); $event.stopPropagation()">
+          {{ image.isFavorite ? "Eliminar Favorita" : "Favorita" }}
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
