@@ -109,7 +109,10 @@
         <img [src]="image.url" [alt]="image.title" />
         <h3>{{ image.title }}</h3>
         <p>{{ image.description }}</p>
-        <button (click)="toggleFavorite(image); $event.stopPropagation()">
+        <button
+          [ngClass]="{ favorite: image.isFavorite }"
+          (click)="toggleFavorite(image); $event.stopPropagation()"
+        >
           {{ image.isFavorite ? "Eliminar Favorita" : "Favorita" }}
         </button>
       </div>

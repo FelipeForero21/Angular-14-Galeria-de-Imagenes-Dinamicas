@@ -1,10 +1,15 @@
+
+html {
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
 h1, h2, h3, p, select, button {
   margin: 0;
   padding: 0;
   text-align: center;
-}
-
-h1, h2, h3 {
   margin-bottom: 16px;
   font-weight: 600;
 }
@@ -17,7 +22,6 @@ select {
   border: 1px solid #ddd;
   border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 300px;
   margin: 0 auto;
@@ -32,16 +36,12 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
   background-color: #0056b3;
-}
-
-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  transform: scale(1.05);
 }
 
 .button-container {
@@ -64,21 +64,6 @@ button:focus {
 .action-button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
-}
-
-.image-card button {
-  margin-top: 8px;
-  padding: 8px 16px;
-  font-size: 1em;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.image-card button:hover {
-  background-color: #0056b3;
 }
 
 .modal-overlay {
@@ -114,34 +99,19 @@ button:focus {
   color: #666;
 }
 
-.modal-content button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-}
-
-.modal-content button:hover {
-  background-color: #0056b3;
-}
-
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin-top: 16px;
-  background: #f9f9f9;
+  background: #f0f0f0;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .image-card {
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -149,6 +119,7 @@ button:focus {
   padding: 8px;
   position: relative;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
 }
 
 .image-card img {
@@ -169,49 +140,10 @@ button:focus {
   color: #666;
 }
 
-.favorite-button {
-  margin-top: 8px;
-  padding: 8px 16px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.image-card button.favorite {
+  background-color: #dc3545;
 }
 
-.favorite-button:hover {
-  background-color: #0056b3;
-}
-
-.favorite-button .fa-heart {
-  color: red;
-}
-
-.category-list {
-  list-style: none;
-  padding: 0;
-  margin: 16px 0;
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-
-.category-list li {
-  background: #007bff;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 1em;
-}
-
-.category-list li:hover {
-  background: #0056b3;
-}
-
-.category-list li.active {
-  background: #0056b3;
+.image-card button.favorite:hover {
+  background-color: #c82333;
 }
