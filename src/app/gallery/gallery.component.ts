@@ -14,7 +14,6 @@ export class GalleryComponent {
   favoriteImages: Image[] = [];
   selectedImage: Image | null = null;
   modal: string | null = null;
-  showForm = false;
 
   constructor(private imageService: ImageService) {
     this.images = this.imageService.getImages();
@@ -64,8 +63,8 @@ export class GalleryComponent {
     };
 
     this.imageService.addImage(newImage);
-    this.images = this.imageService.getImages(); // Actualiza el array de imágenes
-    this.closeModal(); // Cierra el modal
+    this.images = this.imageService.getImages(); 
+    this.closeModal(); 
   }
 
   filteredImages() {
@@ -77,7 +76,4 @@ export class GalleryComponent {
     );
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
-  }
 }
